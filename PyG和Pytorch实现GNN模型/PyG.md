@@ -362,7 +362,8 @@ class GCNConv(MessagePassing):
 
         # Step 3: Normalize node features.
         row, col = edge_index
-        deg = degree(row, size[0], dtype=x_j.dtype)  # [N, ]
+        #deg = degree(row, size[0], dtype=x_j.dtype)  # [N, ]
+        deg = degree(col, size[0], dtype=x_j.dtype)  # [N, ]
         deg_inv_sqrt = deg.pow(-0.5)   # [N, ]
         norm = deg_inv_sqrt[row] * deg_inv_sqrt[col]
 
