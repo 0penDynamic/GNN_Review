@@ -340,7 +340,7 @@ from torch_geometric.utils import add_self_loops, degree
 
 class GCNConv(MessagePassing):
     def __init__(self, in_channels, out_channels):
-        super(GCNConv, self).__init__(aggr='add')  # "Add" aggregation.
+        super(GCNConv, self).__init__(aggr='add',flow="target_to_source")  # "Add" aggregation;默认的是"source_to_target".
         self.lin = torch.nn.Linear(in_channels, out_channels)
 
     def forward(self, x, edge_index):
